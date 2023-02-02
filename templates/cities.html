@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Display and search cities</h2>
+  <form action="{{url_for('cities')}}" method = "GET">
+    <label for="searchValue">Value:</label>
+    <input type="text" id="searchValue" name="searchValue"><br><br>
+    <label for="type">Search by:</label>
+    <select name="type" id="type">
+      <option value="">-</option>
+      <option value="state">State</option>
+      <option value="country">Country</option>
+      <option value="city">City</option>
+    </select>
+    <input type="submit" value="Search">
+  </form>
+  <ul>
+    {% for (state, countries) in cities_tree.items() %}
+    <li>{{state}}</li>
+      <ul>
+      {% for (country, cities) in countries.items() %}
+        <li>{{country}}</li>
+          <ul>
+          {% for city in cities.keys() %}
+            <li>{{city}}</li>
+          {% endfor %}
+          </ul>
+      {% endfor %}
+      </ul>
+    {% endfor %}
+  </ul>
+{% endblock %}

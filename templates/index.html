@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Import csv file</h2>
+<form action = "{{url_for('upload_csv')}}" method = "POST" enctype = "multipart/form-data">
+ <input type = "file" name = "file" />
+ <input type = "submit"/>
+</form>
+{% endblock %}
